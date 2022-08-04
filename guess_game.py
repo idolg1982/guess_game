@@ -66,7 +66,7 @@ while user_input != 'no':
         user_input = 'no'
     random = randint(1,100)
     counter = 0
-    print(random)
+    #print(random)
     num = None
     lst.clear()
 
