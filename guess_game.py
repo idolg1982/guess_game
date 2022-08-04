@@ -1,14 +1,14 @@
 from random import *
 from statistics import *
-from tkinter import N
+
 
 
 random = randint(1,100)
 counter = 0
-print(random)
+#print(random)
 num = None
 lst = []
-user = None
+user_input = ""
 best = None
 
 def guess(num1, random1):
@@ -41,33 +41,34 @@ print("""
       
       """)         
 print("Currently no best score, try to set one yourself!")
-while user != "no" or user != "n":
+while user_input != 'no':
     while num!=random:
         try:
-            num = input("Enter a guess between 1 - 100: ")
-            num = int(num) 
-            if num < 1 or num > 100:
-                num = input("Try again, the guess needs to be between 1 - 100: ")
-                num = int(num)              
+            num = int(input("Enter a guess between 1 - 100: "))
+            while num < 0 or num > 101:
+                print("Oh Oh, we got a guessing error")
+                num = int(input("Enter a guess between 1 - 100: "))                                                           
         except ValueError:
             print("Oh Oh, we got a guessing error")
         else:
             lst.append(num)
             counter = counter + 1
             guess(num, random)
-    show_score(lst, counter)    
-    user = input("Would you like to play again? Yes or No: ")
-    user = user.lower
+    show_score(lst, counter)
     if best == None:
         best = counter   
     if counter < best:
         best = counter
-    print(f"The best score to beat is {best}")
+    print(f"The best score to beat is {best}")        
+    user_input = input("Would you like to play again? Yes or No: ")
+    user_input = user_input.lower()
+    if user_input == 'n':
+        user_input = 'no'
     random = randint(1,100)
     counter = 0
     print(random)
     num = None
-    lst = None
+    lst.clear()
 
 
 print("I hope you had fun playing this game!!!")
